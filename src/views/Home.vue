@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <table class="table">
+    <table class="table table-sm">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -1059,20 +1059,23 @@
         </tr>
         <tr>
           <th scope="row">48</th>
-          <td>---</td>
-          <td>---</td>
+          <td>Формы form.io</td>
+          <td>Отработка отображения форм form.io</td>
           <td>48_formio</td>
           <td><a href="" target="_blank">---</a></td>
+          <td>JS, form.io</td>
           <td>---</td>
           <td>---</td>
+          <td>Локализация части проекта</td>
           <td>---</td>
           <td>---</td>
-          <td>---</td>
-          <td>---</td>
-          <td>---</td>
+          <td>Дом</td>
           <td>+</td>
           <td>-</td>
-          <td>---</td>
+          <td>
+            «+» - Переопределение поведения компонентов формы, перевод.
+            Отображение формы, сделанной на сайте
+          </td>
         </tr>
         <tr>
           <th scope="row">49</th>
@@ -1108,22 +1111,37 @@
           <td>-</td>
           <td>---</td>
         </tr>
-        <tr>
+        <tr class="table-secondary">
           <th scope="row">51</th>
           <td>Vueformio</td>
-          <td>---</td>
+          <td>Сформирован для разбора работы библиотеки form.io.</td>
           <td>51_vueformio</td>
-          <td><a href="" target="_blank">---</a></td>
+          <td>
+            <a
+              href="https://www.d-skills.ru/51_vueformio/index.html#/home"
+              target="_blank"
+              >https://www.d-skills.ru/51_vueformio/index.html#/home</a
+            >
+          </td>
+          <td>Vue, form.io</td>
           <td>---</td>
           <td>---</td>
-          <td>---</td>
-          <td>---</td>
-          <td>---</td>
-          <td>---</td>
-          <td>---</td>
+          <td>Локализация части проекта</td>
+          <td>В работе</td>
+          <td>80%</td>
+          <td>Дом</td>
           <td>+</td>
-          <td>-</td>
-          <td>---</td>
+          <td>+</td>
+          <td>
+            «-» - перевод не полный, наименования полей в комментарии не
+            подтягиваются, загруженные в открытом контуре файлы в поле файл не
+            скачиваются, нет электронной подписи. Не работает без VPN! Следующая
+            форма не подгружается из-за CORS<br />
+            «+» - Отработаны лоадеры с текстовыми комментариями, зависящими от
+            выполняемого действия, после получения ответа появляется временное
+            уведомление об успехе. Отработана верстка форм для боевого проекта.
+            Отработаны экшены кнопок формы. Частичный перевод.
+          </td>
         </tr>
         <tr>
           <th scope="row">52</th>
