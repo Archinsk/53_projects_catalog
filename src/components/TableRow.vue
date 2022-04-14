@@ -23,8 +23,15 @@
     <!--      «-» - неполный перечень проектов, грубый дизайн, крупные карточки-->
     <!--      мобильной версии-->
     <!--    </td>-->
-
-    <TableCell v-for="(cellItem, index) of row" :key="index" :cell="cellItem" />
+        <template v-for="(cell, key, index) of row">
+    <TableCell
+      v-if="cols[index].visibility"
+      :key="index"
+      :index="index"
+      :cell="cell"
+      :type="cols[index].type"
+    />
+        </template>
   </tr>
 </template>
 
@@ -36,7 +43,7 @@ export default {
   components: {
     TableCell,
   },
-  props: ["row"],
+  props: ["row", "cols"],
 };
 </script>
 
