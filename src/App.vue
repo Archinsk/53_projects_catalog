@@ -1,5 +1,10 @@
 <template>
   <TheHeader />
+  <router-link to="/">Главная</router-link>
+  <br />
+  <router-link to="/registry">Реестр</router-link>
+  <!--  <router-link to="/">Главная</router-link>-->
+  <!--  <router-link :to="/">Главная</router-link>-->
   <router-view :projects-db="projects" />
 </template>
 
