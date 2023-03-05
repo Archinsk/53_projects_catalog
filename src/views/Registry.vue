@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div id="registryView">
     <table class="table table-sm">
       <thead>
         <tr>
@@ -19,16 +19,19 @@
           <th scope="col">Исходник</th>
           <th scope="col">GitHub</th>
           <th scope="col">Хостинг</th>
+          <th scope="col">Репозиторий</th>
           <th scope="col">Комментарии</th>
         </tr>
       </thead>
       <tbody v-if="projectsDb.length > 0">
-        <TableRow
-          v-for="projectItem of projectsDb"
-          :key="projectItem.id"
-          :row="projectItem"
-          :cols="columns"
-        />
+        <template v-for="projectItem of projectsDb">
+          <TableRow
+            v-if="projectItem.status !== 'Удалён'"
+            :key="projectItem.id"
+            :row="projectItem"
+            :cols="columns"
+          />
+        </template>
       </tbody>
     </table>
   </div>
@@ -130,6 +133,11 @@ export default {
           visibility: true,
         },
         {
+          name: "Репозиторий",
+          type: "string",
+          visibility: true,
+        },
+        {
           name: "Комментарии",
           type: "string",
           visibility: true,
@@ -144,3 +152,9 @@ export default {
 };
 </script>
 >
+
+<style lang="scss" scoped>
+.project-completed-row {
+  background-color: palegreen;
+}
+</style>

@@ -1,14 +1,10 @@
 <template>
-  <div id="homeView">
+  <div id="adminView">
     <div class="container">
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-2">
         <template v-for="projectDbItem of projectsDb">
           <ProjectCard
-            v-if="
-              projectDbItem.purpose === 'Демонстрационный' &&
-              projectDbItem.status !== 'Удалён' &&
-              projectDbItem.progress >= 70
-            "
+            v-if="projectDbItem.status !== 'Удалён'"
             :project="projectDbItem"
             :key="projectDbItem.id"
           />
@@ -23,7 +19,7 @@ import ProjectCard from "../components/ProjectCard";
 // import TheHeader from "../components/TheHeader";
 
 export default {
-  name: "Home",
+  name: "Admin",
   components: {
     ProjectCard,
     // TheHeader,
@@ -124,3 +120,5 @@ export default {
 };
 </script>
 >
+
+<style lang="scss" scoped></style>
