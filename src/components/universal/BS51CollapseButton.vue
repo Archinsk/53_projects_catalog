@@ -1,5 +1,17 @@
 <template>
+  <a
+    v-if="tag === 'a'"
+    class="btn-collapse"
+    data-bs-toggle="collapse"
+    :href="'#' + targetId"
+    role="button"
+    aria-expanded="false"
+    :aria-controls="targetId"
+  >
+    <slot></slot>
+  </a>
   <button
+    v-else
     class="btn btn-collapse"
     type="button"
     data-bs-toggle="collapse"
@@ -15,6 +27,6 @@
 <script>
 export default {
   name: "CollapseButton",
-  props: ["targetId"],
+  props: ["targetId", "tag"],
 };
 </script>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RotateX</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .container {
+        width: 300px;
+        margin: 0 auto;
+      }
+      .btn {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+      }
+      .container-transformed {
+        position: relative;
+        width: 200px;
+        height: 50px;
+        opacity: 0.5;
+        perspective: 400px;
+        background-color: grey;
+        transform-style: preserve-3d;
+      }
+      #transformed {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        opacity: 0.5;
+        background-color: deepskyblue;
+        transition: all 1s;
+        transform: rotateX(0deg);
+        transform-origin: top center;
+        transition: all 1s linear;
+      }
+      #transformed.active {
+        transform: rotateX(90deg);
+      }
+      #transformed-2 {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        opacity: 0.5;
+        background-color: red;
+        transform: rotateX(-90deg);
+        transform-origin: bottom center;
+        transition: all 1s linear;
+      }
+      #transformed-2.active {
+        transform: rotateX(0deg);
+      }
+
+      #perspectiveContainer {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        perspective: 300px;
+      }
+      #transformed3Dcontainer {
+        width: 100px;
+        height: 100px;
+        transition: all 1s;
+        transform-style: preserve-3d;
+        color: white;
+        font-family: "Arial";
+        font-size: 50px;
+        font-weight: bold;
+      }
+      #transformed3Dcontainer.active {
+        position: relative;
+        /*transform: rotate3d(1, 0, 0, 90deg);*/
+      }
+      #transformed3D1 {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        /*opacity: 0.5;*/
+        background-color: red;
+        transform: translateZ(50px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #transformed3D2 {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        /*opacity: 0.5;*/
+        background-color: gold;
+        transform: rotateX(-90deg) translateZ(50px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #transformed3D3 {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        /*opacity: 0.5;*/
+        background-color: green;
+        transform: rotateX(180deg) translateZ(50px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #transformed3D4 {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        /*opacity: 0.5;*/
+        background-color: gold;
+        transform: rotateX(90deg) translateZ(50px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>Имитация 3d-трансформации</div>
+      <button type="button" class="btn" onclick="transformBrick('transformed')">
+        Пуск
+      </button>
+      <div class="container-transformed">
+        <div id="transformed">Текст</div>
+        <div id="transformed-2">Текст</div>
+      </div>
+      <button type="button" class="btn" onclick="transform3D()">Пуск</button>
+      <div id="perspectiveContainer">
+        <div id="transformed3Dcontainer">
+          <div id="transformed3D1">1</div>
+          <div id="transformed3D2">2</div>
+          <div id="transformed3D3">3</div>
+          <div id="transformed3D4">4</div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let step = 0;
+    function transformBrick(id) {
+      let transformedSquare1 = document.getElementById(id);
+      let transformedSquare2 = document.getElementById(id + "-2");
+      console.log(transformedSquare1);
+      console.log(transformedSquare2);
+      transformedSquare1.classList.toggle("active");
+      transformedSquare2.classList.toggle("active");
+    }
+    function transform3D() {
+      let transformedContainer = document.getElementById(
+        "transformed3Dcontainer"
+      );
+      console.log(transformedContainer);
+      // transformedContainer.classList.toggle("active");
+      // transformedContainer.setAttribute('style', `transform: rotate3d(1, 0, 0, 90deg)`);
+      step++;
+      transformedContainer.style.transform = `rotate3d(1, 0, 0, ${
+        90 * step
+      }deg)`;
+    }
+  </script>
+</html>

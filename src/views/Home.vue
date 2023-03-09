@@ -1,7 +1,8 @@
 <template>
   <div id="homeView">
     <div class="container">
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <!--      row-cols-md-3-->
+      <div class="row row-cols-1 row-cols-lg-4 g-3">
         <template v-for="projectDbItem of projectsDb">
           <ProjectCard
             v-if="
