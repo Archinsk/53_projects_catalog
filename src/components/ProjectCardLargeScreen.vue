@@ -1,57 +1,69 @@
 <template>
-  <div class="col">
-    <vb-card footer image-position="top" :class="cardClass">
-      <template v-slot:card-image-top>
-        <img
-          v-if="project.image"
-          :src="project.image"
-          class="card-img-top"
-          alt="..."
-        />
-      </template>
-      <template v-slot:card-body>
-        <div class="d-flex flex-column justify-content-between">
-          <div>
-            <h5 class="card-title">{{ project.name }}</h5>
-            <p class="card-text">
-              {{ project.description }}
-            </p>
-          </div>
-          <CollapseButton :target-id="`collapse${project.id}`" tag="a"
-            >Подробнее</CollapseButton
-          >
-        </div>
-        <Collapse :id="`collapse${project.id}`">
+  <vb-card footer image-position="top" :class="cardClass">
+    <template v-slot:card-image-top>
+      <img
+        v-if="project.image"
+        :src="project.image"
+        class="card-img-top"
+        alt="..."
+      />
+    </template>
+    <template v-slot:card-body>
+      <div>
+        <h5 class="card-title">{{ project.name }}</h5>
+        <p class="card-text opacity-75">
+          {{ project.description }}
+        </p>
+      </div>
+      <CollapseButton
+        :target-id="`collapse${project.id}`"
+        tag="a"
+        class="btn btn-primary mt-3"
+        >Подробнее</CollapseButton
+      >
+      <Collapse :id="`collapse${project.id}`">
+        <div class="mt-3">
           <p v-if="project.tech" class="card-text">
-            Технологии: <span class="badge bg-info">{{ project.tech }}</span>
+            Технологии:
+            <span
+              v-for="(tech, index) of projectTechArray"
+              :key="index"
+              class="badge bg-info me-1"
+              >{{ tech }}</span
+            >
           </p>
-          <p v-if="project.tags" class="card-text">Теги: {{ project.tags }}</p>
+          <p v-if="project.tags" class="card-text">
+            Теги: <span class="opacity-75">{{ project.tags }}</span>
+          </p>
           <p v-if="project.term" class="card-text">
-            Понятия: {{ project.term }}
+            Понятия: <span class="opacity-75">{{ project.term }}</span>
           </p>
-          <!--        stretched-link-->
+          <template v-if="project.repository">
+            <a
+              :href="project.repository"
+              style="z-index: 12000"
+              class="btn btn-primary mb-3"
+              >GitHub</a
+            ><br />
+          </template>
           <a
             v-if="project.url"
             :href="project.url"
             target="_blank"
-            class="card-link"
-            >Перейти</a
+            class="card-link btn btn-primary"
+            >Смотреть</a
           >
-          <template v-if="project.repository">
-            <br />
-            <a :href="project.repository" style="z-index: 12000">GitHub</a>
-          </template>
-        </Collapse>
-      </template>
-      <template v-slot:card-footer>
-        <vb-progress
-          v-if="project.progress"
-          :progress-value="project.progress"
-          colored
-        />
-      </template>
-    </vb-card>
-  </div>
+        </div>
+      </Collapse>
+    </template>
+    <template v-slot:card-footer>
+      <vb-progress
+        v-if="project.progress"
+        :progress-value="+project.progress"
+        colored
+      />
+    </template>
+  </vb-card>
 </template>
 
 <script>
@@ -66,7 +78,7 @@ export default {
   props: ["project"],
   computed: {
     cardClass: function () {
-      let cardClass = "h-100";
+      let cardClass = "";
       if (
         +this.project.progress === 100 &&
         this.project.purpose === "Демонстрационный"
@@ -76,6 +88,13 @@ export default {
         cardClass += " project-private-completed";
       }
       return cardClass;
+    },
+    projectTechArray: function () {
+      if (this.project.tech) {
+        return this.project.tech.split(", ");
+      } else {
+        return [];
+      }
     },
   },
 };

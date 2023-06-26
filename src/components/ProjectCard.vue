@@ -1,6 +1,9 @@
 <template>
-  <project-card-large-screen :project="project" class="d-none d-lg-block" />
-  <project-card-small-screen :project="project" class="d-block d-lg-none" />
+  <project-card-large-screen
+    :project="project"
+    class="d-none d-sm-inline-block"
+  />
+  <project-card-small-screen :project="project" class="d-block d-sm-none" />
 </template>
 
 <script>
