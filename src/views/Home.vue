@@ -1,7 +1,7 @@
 <template>
   <div id="homeView">
     <div class="container">
-      <div
+      <!--<div
         class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 g-3"
       >
         <template v-for="projectDbItem of projectsDb">
@@ -15,9 +15,9 @@
             :key="projectDbItem.id"
           />
         </template>
-      </div>
+      </div>-->
       <div class="new-grid">
-        <template v-for="projectDbItem of projectsDb">
+        <template v-for="projectDbItem of filtredProjects">
           <ProjectCard
             v-if="
               projectDbItem.purpose === 'Демонстрационный' &&
@@ -26,6 +26,7 @@
             "
             :project="projectDbItem"
             :key="projectDbItem.id"
+            @flip-large-card="$emit('flip-large-card', $event)"
           />
         </template>
       </div>
@@ -135,6 +136,19 @@ export default {
         },
       ],
     };
+  },
+
+  computed: {
+    filtredProjects() {
+      let filtredProjects = this.projectsDb.filter((project) => {
+        return (
+          project.purpose === "Демонстрационный" &&
+          project.status !== "Удалён" &&
+          project.progress >= 70
+        );
+      });
+      return filtredProjects;
+    },
   },
 };
 </script>
