@@ -1,5 +1,5 @@
 <template>
-  <div id="homeView">
+  <div id="home-view">
     <div class="container">
       <!--<div
         class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 g-3"
@@ -16,20 +16,18 @@
           />
         </template>
       </div>-->
-      <div class="new-grid">
-        <template v-for="projectDbItem of filtredProjects">
-          <ProjectCard
-            v-if="
-              projectDbItem.purpose === 'Демонстрационный' &&
-              projectDbItem.status !== 'Удалён' &&
-              projectDbItem.progress >= 70
-            "
-            :project="projectDbItem"
-            :key="projectDbItem.id"
-            @flip-large-card="$emit('flip-large-card', $event)"
-          />
-        </template>
-      </div>
+      <template v-for="projectDbItem of filtredProjects">
+        <ProjectCard
+          v-if="
+            projectDbItem.purpose === 'Демонстрационный' &&
+            projectDbItem.status !== 'Удалён' &&
+            projectDbItem.progress >= 70
+          "
+          :project="projectDbItem"
+          :key="projectDbItem.id"
+          @flip-large-card="$emit('flip-large-card', $event)"
+        />
+      </template>
     </div>
   </div>
 </template>

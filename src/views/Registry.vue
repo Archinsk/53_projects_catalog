@@ -1,5 +1,5 @@
 <template>
-  <div id="registryView">
+  <div id="registry-view">
     <table class="table table-sm">
       <thead>
         <tr>

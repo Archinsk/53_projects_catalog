@@ -55,7 +55,8 @@ $card-border-radius: 1.875rem;
 
 // 6. Add additional custom code here
 body {
-  #homeView {
+  #home-view,
+  #admin-view {
     background: radial-gradient(
       circle,
       rgba(35, 90, 191, 1) 0%,
@@ -63,87 +64,99 @@ body {
       rgba(0, 9, 27, 1) 100%
     );
 
-    .card {
-      background: #d9d9d91c;
-      color: #fff;
-      box-shadow: 13px 14px 63px 0px rgba(255, 255, 255, 11%) inset;
-      position: absolute;
-    }
-
-    .new-grid {
+    .container {
       line-height: 0;
 
+      .card {
+        //Все карточки проекта
+        background-color: #1a438e;
+        color: #fff;
+
+        &::after {
+          content: " ";
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 1.875rem;
+          box-shadow: 0 0 2rem 0 rgba(255, 255, 255, 50%) inset;
+          z-index: 0;
+        }
+
+        .btn {
+          position: relative;
+          z-index: 1;
+        }
+      }
+
       .project-large-card-container {
-        display: inline-block;
+        //Большие карточки
+        $large-card-width: 15rem;
+        $large-card-height: 22.5rem;
+        $large-card-image-height: 7.5rem;
         position: relative;
+        display: inline-block;
+        //line-height: 0;
+        width: $large-card-width;
+        height: $large-card-height;
         margin: 0.375rem;
-        @media (min-width: 576px) {
-          width: 15rem;
-          height: 22.5rem;
+
+        .card {
+          position: absolute;
+          width: $large-card-width;
+          height: $large-card-height;
           overflow: hidden;
+
+          .card-img-top {
+            height: $large-card-image-height;
+          }
+
+          .card-body {
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
         }
 
         .card-front-side {
+          //Лицевая сторона большой карточки
           transition: transform 0.6s;
           z-index: 1;
+
+          .card-body {
+            height: calc(100% - $large-card-image-height);
+          }
         }
         .card-back-side {
+          //Обратная сторона большой карточки
           transition: transform 0.6s;
           transform: rotateY(-180deg);
           z-index: 0;
+
+          .card-body {
+            height: 100%;
+          }
         }
 
         &.project-large-card-flipped {
           .card-front-side {
+            //Повернутая лицевая сторона большой карточки
             transform: rotateY(-180deg);
             z-index: 0;
           }
           .card-back-side {
+            //Повернутая обратная сторона большой карточки
+            background-color: #661a8e;
             transform: rotateY(-360deg);
             z-index: 1;
-          }
-        }
-      }
-
-      .card {
-        $image-height: 7.5rem;
-        background-color: #235abf;
-
-        @media (min-width: 576px) {
-          width: 15rem;
-          height: 22.5rem;
-          overflow: hidden;
-        }
-
-        .card-img-top {
-          height: $image-height;
-        }
-
-        .card-body {
-          line-height: 1.5;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        .card-footer {
-          line-height: 1.5;
-        }
-
-        &.card-front-side {
-          .card-body {
-            height: calc(100% - $image-height);
-          }
-        }
-
-        &.card-back-side {
-          .card-body {
-            height: 100%;
           }
         }
       }
     }
   }
 
+  //Глобальные стили
   .btn-round {
     width: 2.375rem;
     height: 2.375rem;
