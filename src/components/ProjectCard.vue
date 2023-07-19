@@ -1,6 +1,6 @@
 <template>
   <div
-    class="project-large-card-container"
+    class="project-large-card-container d-none d-sm-inline-block"
     :class="project.largeCardFlip ? 'project-large-card-flipped' : ''"
   >
     <project-card-large-screen-front
@@ -14,20 +14,23 @@
       @flip-large-card="$emit('flip-large-card', $event)"
     />
   </div>
-  <project-card-small-screen :project="project" class="d-block d-sm-none" />
+  <project-card-small-screen
+    class="project-small-card-container d-block d-sm-none"
+    :project="project"
+  />
 </template>
 
 <script>
-import ProjectCardSmallScreen from "./ProjectCardSmallScreen";
 import ProjectCardLargeScreenFront from "./ProjectCardLargeScreenFront";
 import ProjectCardLargeScreenBack from "./ProjectCardLargeScreenBack";
+import ProjectCardSmallScreen from "./ProjectCardSmallScreen";
 
 export default {
   name: "ProjectCard",
   components: {
+    ProjectCardSmallScreen,
     ProjectCardLargeScreenBack,
     ProjectCardLargeScreenFront,
-    ProjectCardSmallScreen,
   },
   props: ["project"],
 };

@@ -44,19 +44,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.progress {
+  background-color: #330d47;
+}
 .progress-20 {
-  background-color: #dc3545;
+  /*background-color: #dc3545;*/
+  background-color: #ee609c;
 }
 .progress-40 {
-  background-color: #ee6420;
+  /*background-color: #ee6420;*/
+  background-color: #cd5db5;
 }
 .progress-60 {
-  background-color: #ffc107;
+  /*background-color: #ffc107;*/
+  background-color: #ad5bce;
 }
 .progress-80 {
-  background-color: #52c315;
+  /*background-color: #52c315;*/
+  background-color: #8c58e6;
 }
 .progress-100 {
-  background-color: #198754;
+  /*background-color: #198754;*/
+  background-color: #6b55ff;
 }
 </style>

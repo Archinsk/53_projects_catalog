@@ -1,15 +1,14 @@
 <template>
   <div id="admin-view">
     <div class="container">
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-2">
-        <template v-for="projectDbItem of projectsDb">
-          <ProjectCard
-            v-if="projectDbItem.status !== 'Удалён'"
-            :project="projectDbItem"
-            :key="projectDbItem.id"
-          />
-        </template>
-      </div>
+      <template v-for="projectDbItem of projectsDb">
+        <ProjectCard
+          v-if="projectDbItem.status !== 'Удалён'"
+          :project="projectDbItem"
+          :key="projectDbItem.id"
+          @flip-large-card="$emit('flip-large-card', $event)"
+        />
+      </template>
     </div>
   </div>
 </template>

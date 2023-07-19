@@ -1,33 +1,12 @@
 <template>
   <div id="home-view">
     <div class="container">
-      <!--<div
-        class="row row-cols-1 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 g-3"
-      >
-        <template v-for="projectDbItem of projectsDb">
-          <ProjectCard
-            v-if="
-              projectDbItem.purpose === 'Демонстрационный' &&
-              projectDbItem.status !== 'Удалён' &&
-              projectDbItem.progress >= 70
-            "
-            :project="projectDbItem"
-            :key="projectDbItem.id"
-          />
-        </template>
-      </div>-->
-      <template v-for="projectDbItem of filtredProjects">
-        <ProjectCard
-          v-if="
-            projectDbItem.purpose === 'Демонстрационный' &&
-            projectDbItem.status !== 'Удалён' &&
-            projectDbItem.progress >= 70
-          "
-          :project="projectDbItem"
-          :key="projectDbItem.id"
-          @flip-large-card="$emit('flip-large-card', $event)"
-        />
-      </template>
+      <ProjectCard
+        v-for="projectDbItem of projectsForPublication"
+        :project="projectDbItem"
+        :key="projectDbItem.id"
+        @flip-large-card="$emit('flip-large-card', $event)"
+      />
     </div>
   </div>
 </template>
@@ -137,15 +116,15 @@ export default {
   },
 
   computed: {
-    filtredProjects() {
-      let filtredProjects = this.projectsDb.filter((project) => {
+    projectsForPublication() {
+      let projectsForPublication = this.projectsDb.filter((project) => {
         return (
           project.purpose === "Демонстрационный" &&
           project.status !== "Удалён" &&
           project.progress >= 70
         );
       });
-      return filtredProjects;
+      return projectsForPublication;
     },
   },
 };

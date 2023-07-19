@@ -1,10 +1,10 @@
 <template>
   <vb-card image-position="top" :class="cardClass">
     <template v-slot:card-image-top>
-      <img v-if="project.image" :src="project.image" class="card-img-top" />
+      <div class="card-img-top" :style="largeCardImageStyle" />
     </template>
     <template v-slot:card-body>
-      <div>
+      <div class="project-description">
         <h5 class="card-title">{{ project.name }}</h5>
         <p class="card-text opacity-75">
           {{ project.description }}
@@ -90,6 +90,12 @@ export default {
         cardClass += " project-private-completed";
       }
       return cardClass;
+    },
+    largeCardImageStyle: function () {
+      const imageUrl = this.project.image
+        ? this.project.image
+        : "images/default.jpg";
+      return `background: url("${imageUrl}") center center / cover no-repeat;`;
     },
   },
 };
