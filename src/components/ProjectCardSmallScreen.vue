@@ -39,10 +39,10 @@ export default {
     ProjectCardSmallScreenFirstFace,
   },
   // components: { VbCard, Collapse, CollapseButton },
-  props: ["project"],
+  props: ["project", "cardIndex"],
   data() {
     return {
-      step: 1,
+      step: -1,
     };
   },
   computed: {
@@ -61,6 +61,15 @@ export default {
     rotateStyle() {
       return `transform: rotate3d(1, 0, 0, ${90 * this.step}deg);`;
     },
+    loadingRotateDelay() {
+      return 1800 + this.cardIndex * 100;
+    },
+  },
+
+  mounted() {
+    setTimeout(() => {
+      this.step++;
+    }, this.loadingRotateDelay);
   },
 };
 </script>

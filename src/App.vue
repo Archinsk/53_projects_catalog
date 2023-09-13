@@ -1,12 +1,13 @@
 <template>
-  <TheHeader />
-  <router-link to="/">Главная</router-link> |
-  <router-link to="/registry">Реестр</router-link> |
-  <router-link to="/admin">Админка</router-link>
-  <!--  <router-link to="/">Главная</router-link>-->
-  <!--  <router-link :to="/">Главная</router-link>-->
+  <template v-if="false">
+    <TheHeader />
+    <router-link to="/">Главная</router-link> |
+    <router-link to="/registry">Реестр</router-link> |
+    <router-link to="/admin">Админка</router-link>
+  </template>
   <router-view
     :projects-db="projects"
+    :is-active-list="isActiveList"
     @flip-large-card="flipLargeCard($event)"
   />
 </template>
@@ -25,6 +26,8 @@ export default {
     return {
       url: "https://www.d-skills.ru/",
       projects: [],
+      // Для маленьких карточек
+      isActiveList: false,
     };
   },
 
@@ -36,7 +39,7 @@ export default {
         .then((response) => {
           let projects = response.data;
           projects.forEach(function (project) {
-            if (project.url) {
+            if (project.path && project.url) {
               let newUrl = baseUrl;
               if (project.path) {
                 newUrl += project.path + "/";
@@ -77,6 +80,9 @@ export default {
 
   mounted: async function () {
     await this.getProjects();
+    setTimeout(() => {
+      this.isActiveList = true;
+    }, 500);
   },
 };
 </script>

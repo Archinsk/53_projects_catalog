@@ -2,8 +2,10 @@
   <div id="home-view">
     <div class="container">
       <ProjectCard
-        v-for="projectDbItem of projectsForPublication"
+        v-for="(projectDbItem, cardIndex) of projectsForPublication"
         :project="projectDbItem"
+        :is-active-list="isActiveList"
+        :card-index="cardIndex"
         :key="projectDbItem.id"
         @flip-large-card="$emit('flip-large-card', $event)"
       />
@@ -21,7 +23,7 @@ export default {
     ProjectCard,
     // TheHeader,
   },
-  props: ["projectsDb"],
+  props: ["projectsDb", "isActiveList"],
 
   data() {
     return {

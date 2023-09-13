@@ -1,10 +1,12 @@
 <template>
   <div id="admin-view">
     <div class="container">
-      <template v-for="projectDbItem of projectsDb">
+      <template v-for="(projectDbItem, cardIndex) of projectsDb">
         <ProjectCard
           v-if="projectDbItem.status !== 'Удалён'"
           :project="projectDbItem"
+          :is-active-list="isActiveList"
+          :card-index="cardIndex"
           :key="projectDbItem.id"
           @flip-large-card="$emit('flip-large-card', $event)"
         />
@@ -23,7 +25,7 @@ export default {
     ProjectCard,
     // TheHeader,
   },
-  props: ["projectsDb"],
+  props: ["projectsDb", "isActiveList"],
 
   data() {
     return {
